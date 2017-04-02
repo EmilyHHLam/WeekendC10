@@ -2,10 +2,12 @@
 
 body {
   margin: 0 auto;
+  font-family: sans-serif, arial;
 }
 .listing {
   background-color: #D3F1F0;
   text-align: center;
+  border: 25px solid lightblue;
 }
 #pagin {
     clear: both;
@@ -20,11 +22,29 @@ body {
 input {
   width: 50%;
 }
-
-.header {
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(left, #f0f0f0, #8c8c8c, #f0f0f0);
+}
+h1 {
+  vertical-align: middle;
+  line-height: 100px;
+  color: white;
+  font-size: 50px;
+  text-shadow: 2px 2px 4px #000000;
   background-color: lightblue;
   text-align: center;
-
+  width: 900px;
+  height: 120px;
+  margin:0 auto;
+}
+img {
+  margin:auto;
+  width:900px;
+  height:320px;
+  display:block;
+  margin:0 auto;
 }
 
 #forSaleImage {
@@ -43,5 +63,37 @@ input {
        height: 100px;
        opacity: 0.1;
        background-size: 100% auto;
-       
+
     }
+    .inputSection{
+      width: 900px;
+      margin:0 auto;
+
+    }
+/*nav bar*/
+.topnav {
+  width: 900px;
+  margin:0 auto;
+  overflow: hidden;
+  background-color: #D8D8D8;
+}
+
+.topnav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #D8D8D8;
+  color: black;
+}
+
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}

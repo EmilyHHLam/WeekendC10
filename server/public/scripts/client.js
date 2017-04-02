@@ -1,9 +1,43 @@
 var current = 100;
 pageSize = 10;
-
+var rent = 0;
+var sale = 0;
 $(document).ready(function() {
   console.log("jquery source:");
   getListing();
+  $('.inputSection').hide();
+  $('.topnav').removeClass('active');
+  //click add
+  $("#addData").on("click", function(){
+    //console.log("addClick");
+    $("a.active").removeClass("active");
+    $('.inputSection').toggle();
+    $(this).addClass('active');
+  });
+
+  //click rent
+  $("#rentData").on("click", function() {
+    //console.log('rent');
+    $("a.active").removeClass("active");
+    $(this).addClass('active');
+    rent = 1;
+  });
+
+  //click buy
+  $("#saleData").on("click", function() {
+    console.log('buy');
+    sale = 1;
+    $("a.active").removeClass("active");
+    $(this).addClass('active');
+
+  });
+  //click both
+  $("#both").on("click", function() {
+    console.log('both');
+    $("a.active").removeClass("active");
+    $(this).addClass('active');
+  });
+
   var listing = {};
   $('.submitaListing').on('click', function() {
     listing.address = $("#address").val();
@@ -55,20 +89,22 @@ function appendListings(listings){
   }
 }
 function convertCurrency(value) {
+  if (value) {
   Price = '$' + value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+  } else {
+    Price = 0;
+  }
   return Price;
 }
 
 function appendListing(listing) {
-  showPage(1);
-
+  console.log("sale = " + sale);
+  console.log("rent = " + rent);
+  if (sale = 1){
+    console.log("its for sale");
+  }
   $(".listingContainer").append("<div class='listing well col-xs-5 col-md-3'></div>");
   var $el = $(".listingContainer").children().last();
-  // if (listing.cost) {
-  // $el.append("<div id='forSaleImage'></div>");
-  // }
-  //$el.append("<div></div>");
-  //$el.append($(this).children().last());
 
   if (listing.cost) {
     $el.append("<div id='forSaleImage'></div>");
@@ -84,7 +120,8 @@ function appendListing(listing) {
 
 
 }
-
+console.log("sale = " + sale);
+console.log("rent = " + rent);
 function showPage(page) {
   //  $(".listing").hide();
     $(".listing").each(function(n) {
