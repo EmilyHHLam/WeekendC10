@@ -1,5 +1,3 @@
-
-
 body {
   margin: 0 auto;
   font-family: sans-serif, arial;
@@ -65,11 +63,11 @@ img {
        background-size: 100% auto;
 
     }
-    .inputSection{
-      width: 900px;
-      margin:0 auto;
+.inputSection{
+    width: 900px;
+    margin:0 auto;
 
-    }
+  }
 /*nav bar*/
 .topnav {
   width: 900px;

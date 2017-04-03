@@ -1,7 +1,8 @@
 var current = 100;
 pageSize = 10;
-var rent = 0;
-var sale = 0;
+var status =0;
+//1=sale, 2=rent, 0=both
+var records = 0;
 $(document).ready(function() {
   console.log("jquery source:");
   getListing();
@@ -17,29 +18,43 @@ $(document).ready(function() {
 
   //click rent
   $("#rentData").on("click", function() {
-    //console.log('rent');
+    records =0;
+    console.log('rent');
+    $('.inputSection').hide();
+    status = 2;
+    getListing();
     $("a.active").removeClass("active");
     $(this).addClass('active');
-    rent = 1;
+  //  console.log('totalrecords' +records);
   });
 
   //click buy
   $("#saleData").on("click", function() {
+    records = 0;
     console.log('buy');
-    sale = 1;
+    $('.inputSection').hide();
+    status = 1;
+    getListing();
     $("a.active").removeClass("active");
     $(this).addClass('active');
+  //  console.log('totalrecords' +records);
 
   });
   //click both
   $("#both").on("click", function() {
+    records = 0;
     console.log('both');
+    $('.inputSection').hide();
+    status = 0;
+    getListing();
     $("a.active").removeClass("active");
     $(this).addClass('active');
+  //  console.log('totalrecords' +records);
   });
 
-  var listing = {};
+
   $('.submitaListing').on('click', function() {
+    var listing = {};
     listing.address = $("#address").val();
     listing.city = $("#city").val();
     listing.sqft = $("#sqft").val();
@@ -50,14 +65,13 @@ $(document).ready(function() {
     console.log("sqft" + listing.sqft);
     console.log("price = " + listing.price);
     console.log("status=" + listing.status);
-
-    // $("#empName").val("");
-    // $("#empPosition").val("");
-    // $("#empSalary").val("");
+    $("#address").val("");
+    $("#city").val("");
+    $("#sqft").val("");
+    $("#price").val("");
+    //$('input:radio[name=status]').is(':checked') = 0;
     postListing(listing);
-
   });
-
 });
 function getListing() {
   $.ajax({
@@ -81,13 +95,33 @@ function postListing(data) {
   });
 }
 
-
 function appendListings(listings){
+   $(".listingContainer").empty();
   for (var i=0; i<listings.length; i++){
     var listing = listings[i];
-    appendListing(listing);
-  }
+    //for sale lists
+      if (status ==1) {
+        if (listing.cost) {
+          appendListing(listing);
+          records++;
+        }
+      }
+      //rent lists
+      else if (status ==2) {
+        if (listing.rent) {
+          appendListing(listing);
+          records++;
+        }
+      }
+      //both lists
+      else {
+        appendListing(listing);
+        records++;
+      }
+
+    }
 }
+
 function convertCurrency(value) {
   if (value) {
   Price = '$' + value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -98,25 +132,41 @@ function convertCurrency(value) {
 }
 
 function appendListing(listing) {
-  console.log("sale = " + sale);
-  console.log("rent = " + rent);
-  if (sale === 1){
-    console.log("its for sale");
-  }
-  $(".listingContainer").append("<div class='listing well col-xs-5 col-md-3'></div>");
-  var $el = $(".listingContainer").children().last();
-
-  if (listing.cost) {
-    $el.append("<div id='forSaleImage'></div>");
-    $el.append("<br><b>Price:</b> " + convertCurrency(listing.cost));
-  } else {
-    $el.append("<div id='forRentImage'></div>");
-    $el.append("<br><b>Price:</b>" + convertCurrency(listing.rent));
-  }
-  $el.append("<br><b>ID: </b>" + current++);
-    $el.append("<br><i>Total Sqft:</i>" + listing.sqft);
-  $el.append("<br>" + listing.address );
-  $el.append("<br>" + listing.city + ", MN</p>");
-
+      console.log('records =', records);
+      $(".listingContainer").append("<div class='listing well col-xs-5 col-md-3'></div>");
+      var $el = $(".listingContainer").children().last();
+      if (listing.cost) {
+        $el.append("<div id='forSaleImage'></div>");
+        $el.append("<br><b>Price:</b> " + convertCurrency(listing.cost));
+      } else {
+        $el.append("<div id='forRentImage'></div>");
+        $el.append("<br><b>Price:</b>" + convertCurrency(listing.rent));
+      }
+      $el.append("<br><b>ID: </b>" + current++);
+      $el.append("<br><i>Total Sqft:</i>" + listing.sqft);
+      $el.append("<br>" + listing.address );
+      $el.append("<br>" + listing.city + ", MN</p>");
 
 }
+
+
+
+//working on pagination
+// }
+// console.log("sale = " + sale);
+// console.log("rent = " + rent);
+// function showPage(page) {
+//   //  $(".listing").hide();
+//     $(".listing").each(function(n) {
+//         if (n >= pageSize * (page - 1) && n < pageSize * page)
+//             $(this).show();
+//     });
+// }
+//
+//
+//
+// $("#pagin li a").click(function() {
+//     $("#pagin li a").removeClass("current");
+//     $(this).addClass("current");
+//     showPage(parseInt($(this).text()));
+// });

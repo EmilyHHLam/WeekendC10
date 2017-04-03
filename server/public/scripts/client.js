@@ -66,9 +66,7 @@ $(document).ready(function() {
     $("#price").val("");
     //$('input:radio[name=status]').is(':checked') = 0;
     postListing(listing);
-
   });
-
 });
 function getListing() {
   $.ajax({
@@ -92,17 +90,14 @@ function postListing(data) {
   });
 }
 
-
 function appendListings(listings){
-
    $(".listingContainer").empty();
   for (var i=0; i<listings.length; i++){
     var listing = listings[i];
     //for sale lists
-
       if (status ==1) {
         if (listing.cost) {
-          records =0;
+
           console.log('status in append' + status);
           appendListing(listing);
           console.log('record' + records++);
@@ -110,14 +105,12 @@ function appendListings(listings){
       }
       else if (status ==2) {
         if (listing.rent) {
-          records =0;
           console.log('status in append' + status);
           appendListing(listing);
           console.log('record' + records++);
         }
       }
       else {
-        records =0;
         appendListing(listing);
         console.log('record' + records++);
       }
@@ -135,8 +128,7 @@ function convertCurrency(value) {
 }
 
 function appendListing(listing) {
-  //console.log("sale1/rent2 = " + status);
-
+      console.log('records =', records);
       $(".listingContainer").append("<div class='listing well col-xs-5 col-md-3'></div>");
       var $el = $(".listingContainer").children().last();
       if (listing.cost) {
@@ -151,18 +143,11 @@ function appendListing(listing) {
       $el.append("<br>" + listing.address );
       $el.append("<br>" + listing.city + ", MN</p>");
 
-
-
-
 }
 
 
 
-// function displayListing(status) {
-//   console.log('status=' + status);
-//
-//
-//
+//working on pagination
 // }
 // console.log("sale = " + sale);
 // console.log("rent = " + rent);

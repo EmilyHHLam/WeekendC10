@@ -8,8 +8,9 @@ Schema              = mongoose.Schema;
 //routes import
 var listings = require("./routes/listings.js");
 
-var mongoURI = "mongodb://localhost:27017/realestate";
-//var mongoURI = "mongodb://users:1234567@ds147480.mlab.com:47480/emily-testdb";
+//var mongoURI = "mongodb://localhost:27017/realestate";
+
+var mongoURI = "mongodb://users:1234567@ds147480.mlab.com:47480/emily-testdb";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 //If there is an error connecting to the database, let us know!
