@@ -12,10 +12,9 @@ var ListingSchema = mongoose.Schema({
 var Listings = mongoose.model("listings", ListingSchema);
 
 //GET listing
-
   router.get("/", function(req, res){
     Listings.find(function(err, Listings){
-      //Get all employees
+      //Get all listing
         if(err){
           console.log(err);
           res.sendStatus(500);
