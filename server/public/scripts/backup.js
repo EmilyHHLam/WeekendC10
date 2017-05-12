@@ -52,7 +52,6 @@ $(document).ready(function() {
   //  console.log('totalrecords' +records);
   });
 
-
   $('.submitaListing').on('click', function() {
     var listing = {};
     listing.address = $("#address").val();
