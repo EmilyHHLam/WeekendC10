@@ -29,7 +29,7 @@ http://stackoverflow.com/questions/14453864/use-more-than-one-schema-per-collect
 ## Technical Used ##
 Mongo, Express, Node.Js, JQuery, Bootstrap, CSS3, HTML5
 
-<p style="text-align: center;"> select rent only </p>
+-> select rent only <-
 ![Screenshot](HGprop.png)
 
 
