@@ -32,5 +32,5 @@ Mongo, Express, Node.Js, JQuery, Bootstrap, CSS3, HTML5
 * =========== select rent only ==============
 ![Screenshot](HGprop.png)
 
-* ===========show the add the new data scenario =============
+<center>===========show the add the new data scenario =============</center>
 ![Screenshot](hoangproperties.png)
