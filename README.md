@@ -32,4 +32,4 @@ Mongo, Express, Node.Js, JQuery, Bootstrap, CSS3, HTML5
 <p style="text-align: center;"> select rent only </p>
 ![Screenshot](HGprop.png)
 
-<p style="text-align: center;"> show the add the new data scenario =============</p>
+
