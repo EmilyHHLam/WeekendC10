@@ -1,7 +1,5 @@
 # Weekend Challenge 4 - Mongo and Bootstrap
 
-** System Detail **
-
 HOANG REAL ESTATE COMPANY:
 
 * Collect the data called “listings”.
